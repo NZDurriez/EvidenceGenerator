@@ -1,12 +1,16 @@
-/* General Page Styling */
 body {
     background: #1e1e1e;
     color: white;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
-
+body::-webkit-scrollbar {
+    display: none;
+}
 /* Main Container */
 .container {
     max-width: 900px;
@@ -16,7 +20,6 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
-
 /* Title Styling */
 .title {
     text-align: center;
@@ -24,14 +27,12 @@ body {
     font-weight: bold;
     margin-bottom: 20px;
 }
-
 /* Wrapper for Form & Output Side by Side */
 .content-wrapper {
     display: flex;
     gap: 20px;
     justify-content: space-between;
 }
-
 /* Form Container */
 .form-container {
     flex: 1;
@@ -39,7 +40,6 @@ body {
     flex-direction: column;
     gap: 15px;
 }
-
 /* Output Container */
 .output-container {
     flex: 1;
@@ -54,20 +54,22 @@ body {
     position: relative;
     white-space: pre-wrap;
     overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
-
+.output-container::-webkit-scrollbar {
+    display: none;
+}
 /* Form Group Styling */
 .form-group {
     display: flex;
     flex-direction: column;
 }
-
 /* Labels */
 label {
     font-weight: bold;
     margin-bottom: 5px;
 }
-
 /* Input, Select, Textarea Styling */
 input, select, textarea {
     width: 100%;
@@ -79,13 +81,11 @@ input, select, textarea {
     font-size: 1em;
     box-sizing: border-box;
 }
-
 /* Textarea Styling */
 textarea {
     min-height: 80px;
     resize: vertical;
 }
-
 /* Button Styling */
 button {
     width: 100%;
@@ -98,25 +98,22 @@ button {
     font-size: 1.1em;
     font-weight: bold;
 }
-
 button:hover {
     background: #0056b3;
 }
-
 /* Output Box */
 .output {
     width: 100%;
     color: #fff;
     text-align: left;
-    margin-top: 30px; /* Moves text down to avoid overlap */
+    margin-top: 30px;
 }
-
 /* Copy Button */
 .copy-btn {
     position: absolute;
-    top: 10px; /* Positions button at the top */
+    top: 10px;
     left: 50%;
-    transform: translateX(-50%); /* Centers the button */
+    transform: translateX(-50%);
     background: #28a745;
     color: white;
     border: none;
@@ -124,25 +121,19 @@ button:hover {
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.9em;
-    display: none; /* Hidden by default */
+    display: none;
 }
-
-/* Show Copy Button when Hovering Over Output */
 .output-container:hover .copy-btn {
     display: block;
 }
-
-/* Copy Button Hover Effect */
 .copy-btn:hover {
     background: #218838;
 }
-
 /* Responsive Design for Smaller Screens */
 @media (max-width: 768px) {
     .content-wrapper {
         flex-direction: column;
     }
-
     .output-container {
         min-height: 200px;
     }
