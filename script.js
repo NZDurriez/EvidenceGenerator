@@ -17,7 +17,7 @@ function generateEvidenceText() {
     outputText += `Platform: ${platform}\n`;
     outputText += `Discord: ${discordId !== "N/A" ? `<@${discordId}>` : "N/A"}\n`;
     outputText += `Background: ${background}\n`;
-    outputText += `Evidence:\n${evidence}\n`;
+    outputText += `Evidence: ${evidence}\n`;
     outputText += `Final Res: ${finalRes}\n`;
     outputText += `${idType}: ${idValue}`;
 
@@ -48,3 +48,4 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("generateBtn").addEventListener("click", generateEvidenceText);
     document.getElementById("copyBtn").addEventListener("click", copyToClipboard);
 });
+
