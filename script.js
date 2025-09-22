@@ -1,4 +1,5 @@
-function generateEvidenceText() {
+// Function to update the output in real time
+function updateEvidenceOutput() {
     // Get field values
     const caseText = document.getElementById("case").value.trim() || "N/A";
     const platform = document.getElementById("platform").value || "N/A";
@@ -13,25 +14,21 @@ function generateEvidenceText() {
     discordId = discordId.replace(/\D/g, '') || "N/A";
 
     // Construct output text
-    let outputText = `Case: ${caseText}\n`;
-    outputText += `Platform: ${platform}\n`;
-    outputText += `Discord: ${discordId !== "N/A" ? `<@${discordId}>` : "N/A"}\n`;
-    outputText += `Background: ${background}\n`;
-    outputText += `Evidence: ${evidence}\n`;
-    outputText += `Final Res: ${finalRes}\n`;
-    outputText += `${idType}: ${idValue}`;
+    const outputText = `Case: ${caseText}\n` +
+                       `Platform: ${platform}\n` +
+                       `Discord: ${discordId !== "N/A" ? `<@${discordId}>` : "N/A"}\n` +
+                       `Background: ${background}\n` +
+                       `Evidence: ${evidence}\n` +
+                       `Final Res: ${finalRes}\n` +
+                       `${idType}: ${idValue}`;
 
     // Display formatted output
     const outputElement = document.getElementById("output");
-    if (outputElement) {
-        outputElement.innerText = outputText;
-        outputElement.style.display = "block";
-    } else {
-        console.error("Output element not found.");
-    }
+    outputElement.innerText = outputText;
+    outputElement.style.display = "block";
 }
 
-// Copy to clipboard function
+// Function to copy output to clipboard
 function copyToClipboard() {
     const outputText = document.getElementById("output").innerText;
     navigator.clipboard.writeText(outputText).then(() => {
@@ -43,9 +40,20 @@ function copyToClipboard() {
     });
 }
 
-// Ensure button click events work
+// Attach events once the DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("generateBtn").addEventListener("click", generateEvidenceText);
-    document.getElementById("copyBtn").addEventListener("click", copyToClipboard);
-});
+    // Select all input, textarea, and select elements
+    const inputs = document.querySelectorAll("#case, #platform, #discord, #background, #evidence, #finalRes, #idType, #idValue");
+    
+    // Add event listeners for real-time updates
+    inputs.forEach(input => {
+        input.addEventListener("input", updateEvidenceOutput);
+        input.addEventListener("change", updateEvidenceOutput);
+    });
 
+    // Copy button listener
+    document.getElementById("copyBtn").addEventListener("click", copyToClipboard);
+
+    // Initialize output on page load
+    updateEvidenceOutput();
+});
